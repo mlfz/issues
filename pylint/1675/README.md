@@ -1,5 +1,6 @@
-Reproduction:
+Issue URL: https://github.com/PyCQA/pylint/issues/1675
 
+Reproduction: `bash test.sh`
 ```markdown
 /home/mlfzhang/Projects/pylint/pylint/1675/pkga/pkga/__init__.pyc
 /home/mlfzhang/Projects/pylint/pylint/1675/pkgb-ns/pkgb/__init__.py
