@@ -20,14 +20,17 @@ ImportError: No module named pkga
 
 ************* Module pkga.a
 E:  1, 0: No name 'FOO' in module 'pkga.pkgb' (no-name-in-module)
->> Not sure why pylint is trying to import from module pkga.pkgb
-
+^ ^ ^ ^ ^
+pylint is incorrectly trying to import from module pkga.pkg.
+NOTE the same error does not appear for pkga.b, which uses from pkgb import * wildcard import.
 
 No config file found, using default configuration
->> It does not do this when not using the plug in.
-Or when pkgb is not namespaced
-Or when the import in pkga/a.py uses from pkgb import *, see pkga/b.py
+^ ^ ^ ^ ^
+OK if we are not using the do-nothing plugin.
+
+^ ^ ^ ^ ^
+OK also if pkgb is not namespaced.
 
 /home/mlfzhang/Projects/pylint/pylint/1675/pkga/pkga/__init__.pyc
-/home/mlfzhang/Projects/pylint/pylint/1675/pkgb-ns/pkgb/__init__.pyc
+/home/mlfzhang/Projects/pylint/pylint/1675/pkgb-ns/pkgb/__init__.py
 ```

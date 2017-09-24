@@ -21,16 +21,29 @@ printf ">> Failed with ImportError. This is expected.\n\n\n"
 
 pylint --rcfile=pylintrc --errors-only pkga/pkga # fail
 
-printf ">> Not sure why pylint is trying to import from module pkga.pkgb\n\n\n"
+cat << EOF
+^ ^ ^ ^ ^
+pylint is incorrectly trying to import from module pkga.pkg.
+NOTE the same error does not appear for pkga.b, which uses from pkgb import * wildcard import.
+
+EOF
 
 ( cd pkga; pylint --errors-only pkga ) # OK if we do not use the astng_transform
 
 cat << EOF
->> It does not do this when not using the plug in.
-Or when pkgb is not namespaced
-Or when the import in pkga/a.py uses from pkgb import *, see pkga/b.py
+^ ^ ^ ^ ^
+OK if we are not using the do-nothing plugin.
 
 EOF
+
+sed -e '/\.declare_namespace/d' -i pkgb-ns/pkgb/__init__.py
+pylint --rcfile=pylintrc --errors-only pkga/pkga # OK
+cat << EOF
+^ ^ ^ ^ ^
+OK also if pkgb is not namespaced.
+
+EOF
+git co -- pkgb-ns/pkgb/__init__.py
 
 # imports are OK
 python << EOF
