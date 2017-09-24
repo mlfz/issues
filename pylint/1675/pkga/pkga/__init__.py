@@ -1,2 +1,1 @@
-import pylint_error
-import pylint_ok
+from pylint_error import *
