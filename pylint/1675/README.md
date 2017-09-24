@@ -1,6 +1,8 @@
 Reproduction:
 
 ```pytb
+running develop
+running develop
 Traceback (most recent call last):
   File "/home/mlfzhang/.virtualenv/m3d/bin/pylint", line 11, in <module>
     load_entry_point('pylint', 'console_scripts', 'pylint')()
@@ -15,8 +17,8 @@ Traceback (most recent call last):
   File "/home/mlfzhang/.virtualenv/m3d/local/lib/python2.7/site-packages/astroid/modutils.py", line 232, in load_module_from_modpath
     mp_file, mp_filename, mp_desc = imp.find_module(part, path)
 ImportError: No module named pkga
->> Failed with ImportError. This is expected.
-
+^ ^ ^ ^ ^
+Failed with ImportError. This is expected.
 
 ************* Module pkga.pylint_error
 E:  1, 0: No name 'FOO' in module 'pkga.pkgb' (no-name-in-module)
@@ -33,4 +35,10 @@ OK also if pkgb is not namespaced.
 
 /home/mlfzhang/Projects/pylint/pylint/1675/pkga/pkga/__init__.pyc
 /home/mlfzhang/Projects/pylint/pylint/1675/pkgb-ns/pkgb/__init__.pyc
+running develop
+Removing /home/mlfzhang/.virtualenv/m3d/lib/python2.7/site-packages/Package-A.egg-link (link to .)
+Removing Package-A 0.0.0 from easy-install.pth file
+running develop
+Removing /home/mlfzhang/.virtualenv/m3d/lib/python2.7/site-packages/Package-B.egg-link (link to .)
+Removing Package-B 0.0.0 from easy-install.pth file
 ```

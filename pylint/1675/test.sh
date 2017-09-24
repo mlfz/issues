@@ -1,23 +1,30 @@
 #!/bin/bash
 
 #set -x
-
-uninstall () {
-	rm -f $VIRTUAL_ENV/lib/python2.7/site-package/Package-{A,B}*.egg-link # remove egg-links
-	sed -i -e '/\/pylint\//d' /home/mlfzhang/.virtualenv/m3d/lib/python2.7/site-packages/easy-install.pth
+dev_install () {
+	{
+		# install editable
+		( cd pkga ; python setup.py develop )
+		( cd pkgb-ns; python setup.py develop )
+	} > /dev/null
+}
+dev_uninstall () {
+	# uninstall editable
+	( cd pkga ; python setup.py develop --uninstall )
+	( cd pkgb-ns; python setup.py develop --uninstall )
 }
 
-uninstall
+dev_uninstall
 
 pylint --rcfile=pylintrc --errors-only pkga/pkga # fails with ImportError, expected
 
-printf ">> Failed with ImportError. This is expected.\n\n\n"
+cat << EOF
+^ ^ ^ ^ ^
+Failed with ImportError. This is expected.
 
-# install editable
-{
-	( cd pkga ; python setup.py develop )
-	( cd pkgb-ns; python setup.py develop )
-} > /dev/null
+EOF
+
+dev_install
 
 pylint --rcfile=pylintrc --errors-only pkga/pkga # fail
 
@@ -59,4 +66,4 @@ from pkgb import FOO # OK
 EOF
 
 # clean up
-uninstall
+dev_uninstall
