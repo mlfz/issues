@@ -23,8 +23,8 @@ pylint --rcfile=pylintrc --errors-only pkga/pkga # fail
 
 cat << EOF
 ^ ^ ^ ^ ^
-pylint is incorrectly trying to import from module pkga.pkg.
-NOTE the same error does not appear for pkga.b, which uses from pkgb import * wildcard import.
+pylint is incorrectly trying to import from module pkga.pkgb.
+NOTE the same error does not appear for pkga.pylint_ok, which uses from pkgb import * wildcard import.
 
 EOF
 

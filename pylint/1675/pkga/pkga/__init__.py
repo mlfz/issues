@@ -1,2 +1,2 @@
-import a
-import b
+import pylint_error
+import pylint_ok
