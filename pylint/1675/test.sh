@@ -16,7 +16,7 @@ dev_uninstall () {
 
 dev_uninstall
 
-pylint --rcfile=pylintrc --errors-only pkga/pkga # fails with ImportError, expected
+pylint --load-plugins=pkga.astng_transform --errors-only pkga/pkga # fails with ImportError, expected
 
 cat << EOF
 ^ ^ ^ ^ ^
@@ -26,7 +26,7 @@ EOF
 
 dev_install
 
-pylint --rcfile=pylintrc --errors-only pkga/pkga # fail
+pylint --load-plugins=pkga.astng_transform --errors-only pkga/pkga # fail
 
 cat << EOF
 ^ ^ ^ ^ ^
@@ -35,7 +35,7 @@ NOTE the same error does not appear for pkga.pylint_ok, which uses from pkgb imp
 
 EOF
 
-( cd pkga; pylint --errors-only pkga ) # OK if we do not use the astng_transform
+pylint --errors-only pkga/pkga # OK
 
 cat << EOF
 ^ ^ ^ ^ ^
