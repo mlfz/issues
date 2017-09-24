@@ -9,12 +9,6 @@ cleanup () {
 }
 trap cleanup EXIT
 
-pylint --errors-only pkga/pkga pkgb-ns/pkgb || cat << EOF
-^ ^ ^ ^ ^
-Failed with ImportError. This is expected.
-
-EOF
-
 {
 	# install editable
 	( cd pkga ; python setup.py develop )

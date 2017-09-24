@@ -1,7 +1,6 @@
 Reproduction:
 
-```pytb
-No config file found, using default configuration
+```sh
 No config file found, using default configuration
 ************* Module pkga.pylint_error
 E:  2, 0: No name 'FOO' in module 'pkga.pkgb' (no-name-in-module)
