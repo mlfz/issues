@@ -1,6 +1,6 @@
 Reproduction:
 
-```
+```pytb
 Traceback (most recent call last):
   File "/home/mlfzhang/.virtualenv/m3d/bin/pylint", line 11, in <module>
     load_entry_point('pylint', 'console_scripts', 'pylint')()
