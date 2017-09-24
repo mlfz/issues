@@ -11,7 +11,7 @@ uninstall
 
 pylint --rcfile=pylintrc --errors-only pkga/pkga # fails with ImportError, expected
 
-echo "Failed with ImportError. This is expected.\n\n\n"
+printf ">> Failed with ImportError. This is expected.\n\n\n"
 
 # install editable
 {
@@ -20,14 +20,16 @@ echo "Failed with ImportError. This is expected.\n\n\n"
 } > /dev/null
 
 pylint --rcfile=pylintrc --errors-only pkga/pkga # fail
-echo "Not sure why pylint is trying parse module pkga.pkgb\n\n\n"
+
+printf ">> Not sure why pylint is trying to import from module pkga.pkgb\n\n\n"
 
 ( cd pkga; pylint --errors-only pkga ) # OK if we do not use the astng_transform
 
 cat << EOF
-It does not do this when not using the plug in.
+>> It does not do this when not using the plug in.
 Or when pkgb is not namespaced
 Or when the import in pkga/a.py uses from pkgb import *, see pkga/b.py
+
 EOF
 
 # imports are OK

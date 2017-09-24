@@ -15,16 +15,19 @@ Traceback (most recent call last):
   File "/home/mlfzhang/.virtualenv/m3d/local/lib/python2.7/site-packages/astroid/modutils.py", line 232, in load_module_from_modpath
     mp_file, mp_filename, mp_desc = imp.find_module(part, path)
 ImportError: No module named pkga
-Failed with ImportError. This is expected.\n\n\n
+>> Failed with ImportError. This is expected.
+
+
 ************* Module pkga.a
 E:  1, 0: No name 'FOO' in module 'pkga.pkgb' (no-name-in-module)
-Not sure why pylint is trying parse module pkga.pkgb\n\n\n
+>> Not sure why pylint is trying to import from module pkga.pkgb
+
+
 No config file found, using default configuration
-It does not do this when not using the plug in.
+>> It does not do this when not using the plug in.
 Or when pkgb is not namespaced
 Or when the import in pkga/a.py uses from pkgb import *, see pkga/b.py
+
 /home/mlfzhang/Projects/pylint/pylint/1675/pkga/pkga/__init__.pyc
 /home/mlfzhang/Projects/pylint/pylint/1675/pkgb-ns/pkgb/__init__.pyc
 ```
-
-
